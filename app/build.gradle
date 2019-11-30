@@ -43,9 +43,11 @@ android {
     productFlavors {
         huawei {
             manifestPlaceholders = [APP_CHANNEL_VALUE: "huawei"]
+            versionName "1.0"
         }
         xiaomi {
             manifestPlaceholders = [APP_CHANNEL_VALUE: "xiaomi"]
+            versionName "1.0"
 
         }
     }
@@ -59,7 +61,7 @@ android {
         variant.outputs.all {
             // 自定义输出路径
             variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
-            outputFileName = variant.name+ ".apk"
+            outputFileName = variant.productFlavors[0].name+ "_"+variant.versionName+".apk"
         }
     }
 
