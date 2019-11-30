@@ -35,6 +35,6 @@ if __name__ == '__main__':
     if len(sys.argv) <= 0:
         print('please input the evn path')
     else:
-        down_link = sys.argv[1]
+        down_link = '下载地址：1）华为：https://np8x.com/test/huawei_1.0.apk 2）小米：https://np8x.com/test/xiaomi_1.0.apk'
 
         main()
