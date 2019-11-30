@@ -21,6 +21,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "default"
     }
     buildTypes {
         release {
@@ -37,30 +38,34 @@ android {
         }
     }
 
-    flavorDimensions "default"
+
+
     productFlavors {
+        huawei {
+            manifestPlaceholders = [APP_CHANNEL_VALUE: "huawei"]
+        }
         xiaomi {
-            versionCode 1
-            versionName "xiaomi"
+            manifestPlaceholders = [APP_CHANNEL_VALUE: "xiaomi"]
 
         }
-        huawei {
-            versionCode 1
-            versionName "huawei"
-        }
+    }
+
+    // 获取渠道名
+    productFlavors.all { flavor ->
+        flavor.manifestPlaceholders = [APP_CHANNEL_VALUE: name]
     }
 
     applicationVariants.all { variant ->
         variant.outputs.all {
             // 自定义输出路径
-            variant.getPackageApplication().outputDirectory =new File(project.rootDir.absolutePath+"/apk")
-            outputFileName = "test.apk"
+            variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
+            outputFileName = variant.name + ".apk"
         }
     }
 
     lintOptions {
         abortOnError false
-  //      lintConfig file("path-to-lint.xml")
+        //      lintConfig file("path-to-lint.xml")
 //        // true--关闭lint报告的分析进度
 //        quiet true
 //        // true--错误发生后停止gradle构建
@@ -111,12 +116,11 @@ android {
     }
 
 
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
