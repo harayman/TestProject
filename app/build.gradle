@@ -39,7 +39,15 @@ android {
 
     flavorDimensions "default"
     productFlavors {
-        eightx { dimension "default" }
+        xiaomi {
+            versionCode 1
+            versionName "xiaomi"
+
+        }
+        huawei {
+            versionCode 1
+            versionName "huawei"
+        }
     }
 
     applicationVariants.all { variant ->
