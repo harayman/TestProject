@@ -59,7 +59,7 @@ android {
         variant.outputs.all {
             // 自定义输出路径
             variant.getPackageApplication().outputDirectory = new File(project.rootDir.absolutePath + "/apk")
-            outputFileName = variant.name + ".apk"
+            outputFileName = variant.productFlavors[0].name+ ".apk"
         }
     }
 
